@@ -59,7 +59,13 @@ $$('.copy').forEach(button => button.addEventListener('click', async () => {
     for (const attribute of ['for', 'aria-describedby', 'aria-labelledby']) {
       if (element.hasAttribute(attribute)) element.setAttribute(attribute, element.getAttribute(attribute).split(' ').map(id => idMap.get(id) || id).join(' '));
     }
-    if (element.matches('input[type="radio"]')) element.name += suffix;
+    if (element.matches('input[type="radio"]')) {
+      element.name += suffix;
+      element.toggleAttribute('checked', element.checked);
+    } else if (element.matches('input')) {
+      element.setAttribute('value', element.value);
+    }
+    if (element.matches('textarea')) element.textContent = element.value;
     if (element.matches('button')) element.type = 'button';
     if (element.matches('img')) element.src = new URL(element.getAttribute('src'), location.href).href;
   });

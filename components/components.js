@@ -56,20 +56,21 @@ $$('.copy').forEach(button => button.addEventListener('click', async () => {
     for (const attribute of Array.from(element.attributes)) {
       if (attribute.name.startsWith('data-')) element.removeAttribute(attribute.name);
     }
-    for (const attribute of ['for', 'aria-describedby', 'aria-labelledby']) {
+    for (const attribute of ['for', 'aria-describedby', 'aria-labelledby', 'aria-controls']) {
       if (element.hasAttribute(attribute)) element.setAttribute(attribute, element.getAttribute(attribute).split(' ').map(id => idMap.get(id) || id).join(' '));
     }
-    if (element.matches('input[type="radio"]')) {
-      element.name += suffix;
+    if (element.matches('input[type="radio"], input[type="checkbox"]')) {
+      if (element.name) element.name += suffix;
       element.toggleAttribute('checked', element.checked);
     } else if (element.matches('input')) {
       element.setAttribute('value', element.value);
     }
     if (element.matches('textarea')) element.textContent = element.value;
+    if (element.matches('option')) element.toggleAttribute('selected', element.selected);
     if (element.matches('button')) element.type = 'button';
     if (element.matches('img')) element.src = new URL(element.getAttribute('src'), location.href).href;
   });
-  const source = '<!-- Requires components.css. Static design markup; connect actions in your app. -->\n' + sample.innerHTML.trim();
+  const source = '<!-- Requires components.css and extended.css. Static design markup; connect actions in your app. -->\n' + sample.innerHTML.trim();
   try {
     await navigator.clipboard.writeText(source);
     announce('HTMLをコピーしました。共通CSSと一緒に使えます。');

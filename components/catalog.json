@@ -1,0 +1,469 @@
+{
+  "name": "心踊る街 UI部品集",
+  "edition": 2,
+  "count": 72,
+  "reference": "https://notic2025-lab.github.io/kokoroodoru-design/?fix=dialog8",
+  "notes": "デザインとローカル操作の見本。認証・GPS・カメラ・送信・永続保存は未接続。追加部品は設計提案。イベント情報は架空。",
+  "base_components": [
+    {
+      "number": 1,
+      "name": "ボタン"
+    },
+    {
+      "number": 2,
+      "name": "アイコンボタン"
+    },
+    {
+      "number": 3,
+      "name": "カテゴリチップ"
+    },
+    {
+      "number": 4,
+      "name": "検索フィールド"
+    },
+    {
+      "number": 5,
+      "name": "テキスト入力"
+    },
+    {
+      "number": 6,
+      "name": "公開範囲"
+    },
+    {
+      "number": 7,
+      "name": "目的地ピン"
+    },
+    {
+      "number": 8,
+      "name": "記憶の灯り"
+    },
+    {
+      "number": 9,
+      "name": "位置情報の状態"
+    },
+    {
+      "number": 10,
+      "name": "道案内カード"
+    },
+    {
+      "number": 11,
+      "name": "場所カード"
+    },
+    {
+      "number": 12,
+      "name": "記憶のボトムシート"
+    },
+    {
+      "number": 13,
+      "name": "確認ダイアログ"
+    },
+    {
+      "number": 14,
+      "name": "お知らせ"
+    },
+    {
+      "number": 15,
+      "name": "空の状態"
+    }
+  ],
+  "groups": [
+    {
+      "id": "identity",
+      "title": "街に入る",
+      "english": "IDENTITY",
+      "description": "認証から、名前と自分の姿を決めるまで。",
+      "components": [
+        {
+          "number": 16,
+          "name": "ログイン方法",
+          "states": "LINE・Google・ゲスト",
+          "keywords": "ログイン サインイン OAuth"
+        },
+        {
+          "number": 17,
+          "name": "認証の進行と復帰",
+          "states": "認証中・復帰・再試行",
+          "keywords": "LINE 復帰 callback"
+        },
+        {
+          "number": 18,
+          "name": "同意チェック",
+          "states": "未同意・同意・操作可否",
+          "keywords": "規約 プライバシーポリシー チェックボックス"
+        },
+        {
+          "number": 19,
+          "name": "ステップ表示",
+          "states": "完了・現在・未到達",
+          "keywords": "オンボーディング 進捗"
+        },
+        {
+          "number": 20,
+          "name": "ニックネーム入力",
+          "states": "未入力・入力・文字数",
+          "keywords": "プロフィール 名前"
+        },
+        {
+          "number": 21,
+          "name": "アバタープレビュー",
+          "states": "自分・小サイズ・接続状態",
+          "keywords": "ユーザー キャラクター アイコン"
+        },
+        {
+          "number": 22,
+          "name": "アバターの色選択",
+          "states": "選択前・選択中・プレビュー",
+          "keywords": "カラーパレット hue"
+        },
+        {
+          "number": 23,
+          "name": "編集アクションバー",
+          "states": "戻る・決定・未保存確認",
+          "keywords": "フッター sticky 保存"
+        }
+      ]
+    },
+    {
+      "id": "navigation",
+      "title": "画面を行き来する",
+      "english": "NAVIGATION",
+      "description": "移動先と、戻る場所をいつも明確に。",
+      "components": [
+        {
+          "number": 24,
+          "name": "アプリヘッダー",
+          "states": "見出し・戻る・お知らせ",
+          "keywords": ""
+        },
+        {
+          "number": 25,
+          "name": "ボトムナビゲーション",
+          "states": "通常・選択中・新着",
+          "keywords": "下部ナビ メニュー タブバー"
+        },
+        {
+          "number": 26,
+          "name": "コンテンツタブ",
+          "states": "自分の記憶・みんなの記憶",
+          "keywords": "タブ 切り替え キーボード"
+        },
+        {
+          "number": 27,
+          "name": "戻る導線と現在地",
+          "states": "一階層戻る・現在の画面",
+          "keywords": "パンくず back"
+        },
+        {
+          "number": 28,
+          "name": "その他の操作メニュー",
+          "states": "編集・共有・削除",
+          "keywords": "ポップオーバー アクションメニュー"
+        },
+        {
+          "number": 29,
+          "name": "設定リスト項目",
+          "states": "補足・現在値・詳細への移動",
+          "keywords": ""
+        },
+        {
+          "number": 30,
+          "name": "並び替えとフィルター",
+          "states": "通常・適用中・解除",
+          "keywords": "ソート セレクト"
+        }
+      ]
+    },
+    {
+      "id": "map-tools",
+      "title": "地図と案内を使う",
+      "english": "MAP & ROUTE",
+      "description": "現在地・精度・経路・権限。歩いているときほど、短く明確に。",
+      "components": [
+        {
+          "number": 31,
+          "name": "地図の操作群",
+          "states": "現在地・方位・レイヤー",
+          "keywords": "マップ コントロール コンパス"
+        },
+        {
+          "number": 32,
+          "name": "GPS精度インジケーター",
+          "states": "良好・低精度・取得中",
+          "keywords": "位置情報 赤 緑 accuracy"
+        },
+        {
+          "number": 33,
+          "name": "現在地と精度範囲",
+          "states": "現在地・進行方向・誤差範囲",
+          "keywords": ""
+        },
+        {
+          "number": 34,
+          "name": "密集した目的地",
+          "states": "件数・展開後",
+          "keywords": "クラスタ クラスター ピン"
+        },
+        {
+          "number": 35,
+          "name": "経路の確認",
+          "states": "目的地・距離・時間・開始",
+          "keywords": "ルートサマリー ナビ"
+        },
+        {
+          "number": 36,
+          "name": "目的地への到着",
+          "states": "到着・案内終了・記憶へ",
+          "keywords": ""
+        },
+        {
+          "number": 37,
+          "name": "経路から外れたとき",
+          "states": "再確認・経路再計算",
+          "keywords": "リルート 逸脱"
+        },
+        {
+          "number": 38,
+          "name": "地図レイヤーの切り替え",
+          "states": "背景・場所・記憶",
+          "keywords": "レイヤー 背景 表示"
+        },
+        {
+          "number": 39,
+          "name": "地図の凡例",
+          "states": "現在地・経路・場所・記憶",
+          "keywords": ""
+        },
+        {
+          "number": 40,
+          "name": "位置情報の利用案内",
+          "states": "許可前・あとで・拒否後",
+          "keywords": "GPS 権限 許可"
+        },
+        {
+          "number": 41,
+          "name": "ARの利用案内",
+          "states": "カメラ許可前・代替の地図",
+          "keywords": "カメラ パーミッション"
+        }
+      ]
+    },
+    {
+      "id": "discovery",
+      "title": "場所と予定を探す",
+      "english": "DISCOVERY",
+      "description": "探す・絞る・気になる場所を覚えておく。",
+      "components": [
+        {
+          "number": 42,
+          "name": "検索結果のリスト",
+          "states": "カテゴリ・名称・距離",
+          "keywords": ""
+        },
+        {
+          "number": 43,
+          "name": "最近の検索",
+          "states": "履歴・個別削除・空状態",
+          "keywords": "検索履歴"
+        },
+        {
+          "number": 44,
+          "name": "絞り込みシート",
+          "states": "カテゴリ・距離・適用・リセット",
+          "keywords": "フィルター スライダー"
+        },
+        {
+          "number": 45,
+          "name": "日付とタイムテーブル",
+          "states": "日付選択・時刻・予定",
+          "keywords": "イベント スケジュール 時間割"
+        },
+        {
+          "number": 46,
+          "name": "イベントカード",
+          "states": "開催中・開催前・満席",
+          "keywords": "開催 ステータス イベント"
+        },
+        {
+          "number": 47,
+          "name": "お気に入り登録",
+          "states": "未登録・登録済み",
+          "keywords": "ブックマーク 保存"
+        },
+        {
+          "number": 48,
+          "name": "開閉できる説明",
+          "states": "閉じる・開く",
+          "keywords": "FAQ アコーディオン details"
+        }
+      ]
+    },
+    {
+      "id": "media",
+      "title": "写真と思い出を扱う",
+      "english": "PHOTOS & MEMORIES",
+      "description": "投稿前から見返すときまで。大切な操作には、確認の余白を。",
+      "components": [
+        {
+          "number": 49,
+          "name": "添付写真の一覧",
+          "states": "添付済み・追加・削除",
+          "keywords": "画像 ギャラリー 添付"
+        },
+        {
+          "number": 50,
+          "name": "アップロードの状態",
+          "states": "送信中・完了・失敗",
+          "keywords": "ローディング プログレス"
+        },
+        {
+          "number": 51,
+          "name": "写真の拡大表示",
+          "states": "プレビュー・拡大・閉じる",
+          "keywords": "画像ビューア ライトボックス"
+        },
+        {
+          "number": 52,
+          "name": "記憶のカード",
+          "states": "公開範囲・本文・場所・日時",
+          "keywords": "投稿 思い出"
+        },
+        {
+          "number": 53,
+          "name": "記憶のタイムライン",
+          "states": "日付・時刻・場所",
+          "keywords": "履歴 日記 フィード"
+        },
+        {
+          "number": 54,
+          "name": "共有シート",
+          "states": "公開リンク・コピー・共有条件",
+          "keywords": "シェア URL"
+        },
+        {
+          "number": 55,
+          "name": "削除の確認",
+          "states": "確認・キャンセル・削除",
+          "keywords": "破壊的操作 ダイアログ"
+        },
+        {
+          "number": 56,
+          "name": "投稿の報告",
+          "states": "理由の選択・補足・確認",
+          "keywords": "通報 モデレーション"
+        }
+      ]
+    },
+    {
+      "id": "account",
+      "title": "自分の設定を整える",
+      "english": "ACCOUNT & SETTINGS",
+      "description": "自分の情報と、通知・公開範囲を管理するための部品。",
+      "components": [
+        {
+          "number": 57,
+          "name": "プロフィール概要",
+          "states": "名前・姿・編集への導線",
+          "keywords": ""
+        },
+        {
+          "number": 58,
+          "name": "通知と表示の設定",
+          "states": "オン・オフ・利用不可",
+          "keywords": "トグル switch 設定"
+        },
+        {
+          "number": 59,
+          "name": "お知らせのリスト",
+          "states": "未読・既読・日時",
+          "keywords": "通知 未読"
+        },
+        {
+          "number": 60,
+          "name": "公開範囲の説明",
+          "states": "自分だけ・みんな・変更",
+          "keywords": "プライバシー 説明"
+        },
+        {
+          "number": 61,
+          "name": "ヘルプと問い合わせ",
+          "states": "使い方・困りごと・連絡導線",
+          "keywords": "サポート FAQ"
+        },
+        {
+          "number": 62,
+          "name": "ログアウトの確認",
+          "states": "確認・キャンセル",
+          "keywords": "サインアウト"
+        }
+      ]
+    },
+    {
+      "id": "system-states",
+      "title": "待つ・困る・やり直す",
+      "english": "SYSTEM STATES",
+      "description": "読み込みや通信の不調でも、次にできることが分かるように。",
+      "components": [
+        {
+          "number": 63,
+          "name": "スケルトン",
+          "states": "画像・見出し・本文の読込待ち",
+          "keywords": "ローディング loading"
+        },
+        {
+          "number": 64,
+          "name": "読込・処理の進捗",
+          "states": "不定進捗・確定進捗",
+          "keywords": "spinner progress 待機"
+        },
+        {
+          "number": 65,
+          "name": "オフラインの通知",
+          "states": "通信なし・再接続",
+          "keywords": "ネットワーク 接続切れ"
+        },
+        {
+          "number": 66,
+          "name": "保存失敗と再試行",
+          "states": "失敗・再試行中・完了",
+          "keywords": "リトライ 投稿エラー"
+        },
+        {
+          "number": 67,
+          "name": "フォームの入力検証",
+          "states": "未入力・エラー・修正後",
+          "keywords": "バリデーション 必須"
+        },
+        {
+          "number": 68,
+          "name": "検索結果なし",
+          "states": "該当なし・条件変更",
+          "keywords": "ゼロ件 empty state"
+        },
+        {
+          "number": 69,
+          "name": "権限がオフの状態",
+          "states": "位置情報オフ・代替操作",
+          "keywords": "拒否 permission denied"
+        },
+        {
+          "number": 70,
+          "name": "一時的に利用できない",
+          "states": "停止中・復旧待ち・再読込",
+          "keywords": "メンテナンス サーバーエラー"
+        },
+        {
+          "number": 71,
+          "name": "セッションの期限切れ",
+          "states": "再ログイン・操作の復帰",
+          "keywords": "認証切れ token session"
+        },
+        {
+          "number": 72,
+          "name": "取り消せるお知らせ",
+          "states": "操作完了・元に戻す",
+          "keywords": "undo トースト snackbar"
+        }
+      ]
+    }
+  ]
+}

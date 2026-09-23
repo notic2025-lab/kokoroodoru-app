@@ -80,7 +80,10 @@ $$('.copy').forEach(button => button.addEventListener('click', async () => {
     if (element.matches('button')) element.type = 'button';
     if (element.matches('img')) element.src = new URL(element.getAttribute('src'), location.href).href;
   });
-  const source = '<!-- Requires components.css, extended.css and ar.css + ar-world.css for AR specimens. Static design markup; connect actions in your app. -->\n' + sample.innerHTML.trim();
+  // Spatial specimens need their positioned surface to preserve contact and layering.
+  sample.classList.remove('sample');
+  const markup = sample.classList.contains('ar4-sample') ? sample.outerHTML : sample.innerHTML.trim();
+  const source = '<!-- Requires components.css, extended.css and ar.css + ar-world.css for AR specimens. Static design markup; connect actions in your app. -->\n' + markup;
   try {
     await navigator.clipboard.writeText(source);
     announce('HTMLをコピーしました。共通CSSと一緒に使えます。');

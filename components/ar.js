@@ -13,7 +13,7 @@
       sample.classList.toggle('lighting-night',state==='night');
     });
     section.querySelectorAll('[data-ar-light-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.arLightMode===mode)));
-    section.querySelector('[data-ar-light-status]').textContent=`${mode==='auto'?'自動':'手動'} · ${state==='day'?'昼のかたち':'夜のひかり'} / 日本時間 ${lighting.formatTime(minute)}`;
+    section.querySelector('[data-ar-light-status]').textContent=`${mode==='auto'?'自動':'手動'} · ${state==='day'?'昼のひかり':'夜のひかり'} / 日本時間 ${lighting.formatTime(minute)}`;
     if(sendToExperience) iframe.contentWindow?.postMessage({type:'kokoro-lighting',mode},location.origin);
   }
   section.querySelectorAll('[data-ar-light-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.arLightMode;sync();}));

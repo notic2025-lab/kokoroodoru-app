@@ -1,7 +1,7 @@
 {
   "name": "心踊る街 UI部品集",
-  "edition": 2,
-  "count": 72,
+  "edition": 3,
+  "count": 92,
   "reference": "https://notic2025-lab.github.io/kokoroodoru-design/?fix=dialog8",
   "notes": "デザインとローカル操作の見本。認証・GPS・カメラ・送信・永続保存は未接続。追加部品は設計提案。イベント情報は架空。",
   "base_components": [
@@ -462,6 +462,134 @@
           "name": "取り消せるお知らせ",
           "states": "操作完了・元に戻す",
           "keywords": "undo トースト snackbar"
+        }
+      ]
+    },
+    {
+      "id": "ar-navigation",
+      "title": "実景に、物語を重ねる",
+      "english": "AR NAVIGATION",
+      "description": "実景と仮想の目印を重ねるARナビゲーションのデザイン提案。",
+      "components": [
+        {
+          "number": 73,
+          "name": "ARの固定ヘッダー",
+          "states": "位置の状態・演出停止・地図へ",
+          "keywords": "AR HUD ステータス"
+        },
+        {
+          "number": 74,
+          "name": "地面に沿う光の矢印",
+          "states": "直進・奥行き・流れる光",
+          "keywords": "AR 地面 ルート 道順"
+        },
+        {
+          "number": 75,
+          "name": "空間に浮かぶ目的地ラベル",
+          "states": "名前・距離・詳細",
+          "keywords": "AR 距離 destination"
+        },
+        {
+          "number": 76,
+          "name": "方位と経路のミニマップ",
+          "states": "北向き・現在方向・曲がり角",
+          "keywords": "AR コンパス 方位"
+        },
+        {
+          "number": 77,
+          "name": "画面外の目的地サイン",
+          "states": "左・右・振り向き",
+          "keywords": "AR オフスクリーン エッジ"
+        },
+        {
+          "number": 78,
+          "name": "ゴールの光の泉",
+          "states": "遠景・接近・到着",
+          "keywords": "AR 泉 ゴール fountain 水"
+        },
+        {
+          "number": 79,
+          "name": "喫煙所の小さな炎",
+          "states": "場所の識別・穏やかな揺らぎ",
+          "keywords": "AR 炎 火 喫煙所 flame"
+        },
+        {
+          "number": 80,
+          "name": "ステージの音の波紋",
+          "states": "音楽の場所・共鳴の表現",
+          "keywords": "AR ステージ 音楽 波紋 sound"
+        },
+        {
+          "number": 81,
+          "name": "キッチンの湯気",
+          "states": "食の場所・上昇する気配",
+          "keywords": "AR キッチン 飲食 湯気 steam"
+        },
+        {
+          "number": 82,
+          "name": "街の入口の光の門",
+          "states": "入口・境界・くぐる予感",
+          "keywords": "AR 入口 光の門 portal"
+        },
+        {
+          "number": 83,
+          "name": "記憶が集まる蛍",
+          "states": "公開の琥珀・自分だけの淡緑",
+          "keywords": "AR 記憶 蛍 パーティクル"
+        },
+        {
+          "number": 84,
+          "name": "ARの道案内カード",
+          "states": "次の行動・次の曲がり角・残距離",
+          "keywords": "AR 案内 下部カード"
+        },
+        {
+          "number": 85,
+          "name": "到着を知らせる波紋",
+          "states": "到着・光の広がり・次の行動",
+          "keywords": "AR 到着 達成 ripple"
+        },
+        {
+          "number": 86,
+          "name": "ARの位置合わせ状態",
+          "states": "一致・調整中・不安定",
+          "keywords": "AR tracking 精度"
+        },
+        {
+          "number": 87,
+          "name": "位置がずれたときの案内",
+          "states": "空間演出の退避・位置確認",
+          "keywords": "AR GPS 測位不良 ドリフト"
+        },
+        {
+          "number": 88,
+          "name": "地面に合わせるガイド",
+          "states": "スマホをゆっくり動かす",
+          "keywords": "AR キャリブレーション 位置合わせ"
+        },
+        {
+          "number": 89,
+          "name": "実景との接地表現",
+          "states": "接地影・光の輪・地面の奥行き",
+          "keywords": "AR 接地 シャドウ world anchor"
+        },
+        {
+          "number": 90,
+          "name": "AR演出の調整",
+          "states": "一時停止・動きを減らす・表示の濃さ",
+          "keywords": "AR 設定 アクセシビリティ motion"
+        },
+        {
+          "number": 91,
+          "name": "通常案内への切り替え",
+          "states": "AR未対応・カメラ不可・地図へ",
+          "keywords": "AR フォールバック カメラ未対応"
+        },
+        {
+          "number": 92,
+          "name": "周囲を確認するひと呼吸",
+          "states": "立ち止まる・画面から顔を上げる",
+          "keywords": "AR 移動 歩行 確認"
         }
       ]
     }

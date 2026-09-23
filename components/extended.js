@@ -18,6 +18,7 @@
     });
     one('#catalog-count').textContent = terms.length ? `${count} / ${cards.length}の部品` : `${cards.length}の部品・昼と夜のデザイン`;
     one('#library-empty').hidden = count !== 0;
+    all('[data-ar-lab], .ar-banner').forEach(element => { element.hidden = terms.length > 0; });
   });
   one('#catalog-count').setAttribute('role', 'status');
   one('#catalog-count').setAttribute('aria-live', 'polite');

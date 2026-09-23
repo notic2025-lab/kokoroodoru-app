@@ -53,6 +53,16 @@ $$('.copy').forEach(button => button.addEventListener('click', async () => {
     element.id += suffix;
   });
   $$('*', sample).forEach(element => {
+    // Inline AR SVGs use gradient, clip and filter references that must follow IDs.
+    for (const attribute of Array.from(element.attributes)) {
+      if (attribute.value.includes('url(#')) {
+        element.setAttribute(attribute.name, attribute.value.replace(/url\(#([^\)]+)\)/g, (match, id) => `url(#${idMap.get(id) || id})`));
+      }
+      if ((attribute.name === 'href' || attribute.name === 'xlink:href') && attribute.value.startsWith('#')) {
+        const id = attribute.value.slice(1);
+        element.setAttribute(attribute.name, '#' + (idMap.get(id) || id));
+      }
+    }
     for (const attribute of Array.from(element.attributes)) {
       if (attribute.name.startsWith('data-')) element.removeAttribute(attribute.name);
     }
@@ -70,7 +80,7 @@ $$('.copy').forEach(button => button.addEventListener('click', async () => {
     if (element.matches('button')) element.type = 'button';
     if (element.matches('img')) element.src = new URL(element.getAttribute('src'), location.href).href;
   });
-  const source = '<!-- Requires components.css and extended.css. Static design markup; connect actions in your app. -->\n' + sample.innerHTML.trim();
+  const source = '<!-- Requires components.css, extended.css and ar.css for AR specimens. Static design markup; connect actions in your app. -->\n' + sample.innerHTML.trim();
   try {
     await navigator.clipboard.writeText(source);
     announce('HTMLをコピーしました。共通CSSと一緒に使えます。');

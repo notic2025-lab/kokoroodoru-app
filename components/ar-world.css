@@ -41,3 +41,17 @@
 @keyframes day-memory{0%,100%{translate:0 0}50%{translate:0 -3px}}
 .is-still .day-flame,.is-still .day-memory{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){.day-flame,.day-memory{animation:none!important}}
+
+/* Edition 06.2 — the same quiet light, readable in daylight. */
+[data-lighting="day"],.lighting-day{--ar-day:none;--ar-night:inline;--ar-route-day:0;--ar-route-night:1;--ar-material-surface:#64725e;--ar-material-ink:#f6f4df;--ar-light-width:2.2;--ar-light-filter:drop-shadow(0 1px .65px #123b33cc) drop-shadow(0 0 .6px #fffce8)}
+[data-lighting="night"],.lighting-night{--ar-light-width:.85;--ar-light-filter:none}
+.night-form{filter:var(--ar-light-filter)}
+.water-thread{stroke-width:var(--ar-light-width,.85)}
+[data-lighting="day"] .night-form :is(.water-bead,.ember-thread,.steam-thread),.lighting-day .night-form :is(.water-bead,.ember-thread,.steam-thread){stroke-width:2.6}
+[data-lighting="day"] .night-form .water-thread,.lighting-day .night-form .water-thread{stroke:#fbffed;opacity:.9}
+[data-lighting="day"] .night-form .sound-wave,.lighting-day .night-form .sound-wave{stroke-width:2.1}
+[data-lighting="day"] .night-form .portal-thread,.lighting-day .night-form .portal-thread{stroke-width:1.7}
+[data-lighting="day"] .night-form .presence-shadow,.lighting-day .night-form .presence-shadow{opacity:.25}
+[data-lighting="day"] .path-spill,.lighting-day .path-spill{stroke:#21473b;stroke-width:9;opacity:.28;filter:blur(2px)}
+[data-lighting="day"] .path-hairline,.lighting-day .path-hairline{stroke:#f5edcb;stroke-width:2.5;opacity:.92;filter:drop-shadow(0 1px .5px #1b3934)}
+[data-lighting="day"] .path-pulse,.lighting-day .path-pulse{stroke:#ffffe7;stroke-width:4;filter:drop-shadow(0 1px .5px #1b3934)}

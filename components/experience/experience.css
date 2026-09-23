@@ -39,3 +39,5 @@ html.is-embedded{background:transparent}.is-embedded .studio-header,.is-embedded
 @media(max-width:760px){.concept{display:block}.concept h1{font-size:34px;line-height:1.7;margin:12px 0}.concept-lead{font-size:14px;line-height:1.8}.light-principle{margin-bottom:22px}.moments{margin-top:14px}.lighting-contrast{grid-template-columns:1fr;gap:23px}.lighting-contrast h3{font-size:20px}.direction-notes{padding-top:0}.is-embedded .studio{padding:0}.is-embedded .light-mode-buttons button{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.landscape-photo{transition:none}}
 @media(max-width:1080px) and (min-width:761px){.concept h1{font-size:clamp(22px,2.5vw,27px)}}
+/* Keep the name above the tallest part of the world marker. */
+.world-caption{top:26%}

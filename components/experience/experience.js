@@ -30,9 +30,9 @@
     const status=lightingMode==='auto'?`自動 · ${label}の表示 / ${source} ${clock}`:`${label}に固定 / 日本時間 ${clock}`;
     $$('[data-light-status]').forEach(el=>{if(el.textContent!==status)el.textContent=status;});
     $('#clock-feedback').textContent=testMinute===null?'端末の時計を日本時間に換算して判定しています。':`${clock}の判定を確認中。現在時刻の自動更新は停止しています。`;
-    $('#light-principle').textContent=resolved==='day'?'昼は濃い色の面と白い縁取り。光らせず、日なたと木陰の両方で形を読み取れるように。':'夜は細い流れと、地面に広がる光。同じ目印の輪郭がほどけて、街の灯りになります。';
+    $('#light-principle').textContent=resolved==='day'?'昼は水の透明感、石の重さ、地面に落ちる影。実景と同じ光を受ける立体として、街に現れます。':'夜は細い流れと、地面に広がる光。同じ目印の輪郭がほどけて、街の灯りになります。';
     $('.field-entry .field-kicker').textContent=resolved==='day'?'この道に、街のしるし。':'この道に、街の灯り。';
-    $('.field-entry>p:not(.field-kicker)').textContent=resolved==='day'?'色のある道しるべをたどって、出かけてみませんか。':'灯りの流れる先へ、出かけてみませんか。';
+    $('.field-entry>p:not(.field-kicker)').textContent=resolved==='day'?'水のきらめく先へ、出かけてみませんか。':'灯りの流れる先へ、出かけてみませんか。';
     if(embedded) parent.postMessage({type:'kokoro-lighting-state',mode:lightingMode},location.origin);
   }
   function chooseLighting(mode) {lightingMode=mode;testMinute=null;applyLighting();}
@@ -61,9 +61,9 @@
     memory: {name:'記憶の木立',element:'残り灯',index:'06',hint:'そこにいた誰かの気配。小さな灯りが、ゆっくり留まる。',description:'同じ場所にいた人の記憶が、小さな灯りとして留まる案。光の数を抑え、木々や人の姿が見える余白を残します。プレビューの灯りは架空です。',arrival:'同じ場所にいた、誰かの気配。\nあなたも、ひとつ灯りを。'}
   };
   const moments = [
-    '景色と目印の関係を最初に見せる。昼は形のある道しるべ、夜は流れる灯りが案内を始める。',
-    '昼は縁取りのある帯、夜は先へ流れる光。道順は同じでも、背景に合う見せ方を選ぶ。',
-    '昼の形と夜の光で、同じ場所を示す。名前・輪郭・動く方向を共通にして迷わせない。',
+    '景色と目印の関係を最初に見せる。昼は実景に接する立体、夜は流れる灯りが案内を始める。',
+    '昼は地面に沿う道しるべ、夜は先へ流れる光。道順は同じでも、背景に合う見せ方を選ぶ。',
+    '昼の質感と夜の光で、同じ場所を示す。名前・場所・動く方向を共通にして迷わせない。',
     '光の道と距離表示を消す。案内の終わりを、実際の場所や人に出会う始まりにする。'
   ];
   function announce(text) {
@@ -145,6 +145,7 @@
   setStill(media.matches);
   // Embed uses the same public scenes. No postMessage or parent state access is required.
   if(embedded) stage=2;
+  if(/^[0-3]$/.test(params.get('scene')||'')) stage=Number(params.get('scene'));
   applyLighting();
   render();
 })();

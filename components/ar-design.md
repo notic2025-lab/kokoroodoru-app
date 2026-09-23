@@ -138,3 +138,18 @@ ARを、場所に記号を貼るためだけに使わない。人が集う、休
 背景生成のプロンプト（built-in image generation）:
 
 > Use case: photorealistic-natural. Asset type: clean real-world camera background for an interactive AR navigation UI prototype. The attached photograph is a reference for the outdoor Japanese park/campsite setting, NOT an image to reproduce with its smartphone. Create a crisp photorealistic portrait 1024x1536 scene viewed directly from pedestrian eye level looking ahead along a broad paved park path. Remove all phone, case, hand, UI, arrows, signs, text and overlays; the final image must be only the real environment. Preserve the reference's calm early-autumn Japanese campsite atmosphere: mossy/grey steps on the left, low wood railing near midground, trees framing both sides, small distant red festival canopy at upper left, muted olive and moss green foliage. The path is clear and unoccupied, covering the entire lower two thirds and tapering toward a vanishing point at approximately x50%, y42%. Keep a visible open patch of pavement at x50%,y53% for a virtual fountain to be added later in code. Broad natural late afternoon daylight, soft warm shadows, tactile asphalt, believable real mobile camera exposure. Make ground relatively evenly lit so pale cyan and amber holographic UI will show clearly. No magical effects, no fantasy objects, no people, no actual fountain, no flames, no virtual objects, no water, no typography, no logos, no phone bezel. Sharp environmental focus, real photography rather than illustration.
+
+
+## Edition 06 — 昼の立体マテリアル
+
+昼の目印を SVG の塗り分けから Three.js のリアルタイム 3D に変更。夜の SVG、時刻判定、案内の状態は維持する。
+
+- 泉：石の縁、濡れた基部、半透明の水柱、約 1,900 粒の水滴、水面の輪。
+- 熾火：炭と低い炎。共鳴：反射する金属の浮遊リング。
+- 湯気：金属の器と体積感のある半透明粒子。入口：金属のアーチ。記憶：環境を映す小球。
+- 光源・環境反射・柔らかい接地影は背景写真用の固定値。実際の光推定、深度遮蔽、平面検出、屈折は未接続。
+- 1 ページにつき WebGL コンテキストは 1 個。見えている標本のみを描画し、2D キャンバスへ転送。デバイス解像度は 1.6 倍に制限。
+- 実景比較・測位不良では昼の立体も即座に隠す。動きの停止・OS の reduced-motion を尊重。
+- WebGL 非対応時は利用不可の表示を出し、名称と地図による確認を残す。
+
+再利用：`vendor/three.r160.min.js`、`day-world.js`、`day-world.css` を読み込み、幅・高さを持つ要素内に `<div class="day-object" data-day-object="water"></div>` を配置。素材は water / ember / sound / steam / portal / memory。祖先の `data-lighting="day"` または `.lighting-day` で昼を指定。Night の既存 SVG を同じコンテナに併設できる。動的に追加する要素は初期化前に配置する。ライセンスは `vendor/THREE-LICENSE.txt`。

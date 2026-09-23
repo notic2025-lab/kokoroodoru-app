@@ -1,0 +1,21 @@
+/* Day only: grounded 3D materials. Night SVG studies remain unchanged. */
+.day-object{display:none;width:100%;height:100%;pointer-events:none;position:absolute;inset:0;isolation:isolate}
+[data-lighting="day"] .day-object,.lighting-day .day-object{display:block}
+[data-lighting="night"] .day-object,.lighting-night .day-object{display:none}
+.day-object canvas{display:block;width:100%;height:100%}
+.day-object-main{position:relative}
+.day-object-frame{overflow:visible;pointer-events:none}
+.has-day-renderer{position:relative}
+.has-day-renderer .day-form{display:none!important}
+.experience[data-lighting="day"] .world-presence{visibility:hidden}
+.experience[data-lighting="day"] .arrival-imprint{opacity:.18}
+.experience.is-reality .day-object-frame,.experience.is-lost .day-object-frame{visibility:hidden}
+.experience[data-lighting="night"] .day-object-frame{display:none}
+[data-lighting="day"] .material-study,.lighting-day .ar4-material{background:radial-gradient(ellipse at 52% 25%,#dfdfd4,#aaa99a);border-color:#c3c7ba}
+.lighting-day .ar4-material{width:100%;height:280px}
+.day-unavailable:after{content:'3D表示を利用できません';position:absolute;left:10%;right:10%;top:50%;text-align:center;padding:12px;background:#f7f3e8;color:#293e31;font:12px sans-serif}
+.experience[data-lighting="day"] .path-day-base{stroke:#313e30;stroke-width:12;opacity:.24;filter:blur(3px)}
+.experience[data-lighting="day"] .path-day-edge{stroke:#c6c1a1;stroke-width:4;opacity:.58}
+.experience[data-lighting="day"] .path-day-core{stroke:#fff7d9;stroke-width:2;stroke-dasharray:7 24;opacity:.82}
+.experience[data-lighting="day"] .world-caption span{box-shadow:0 2px 6px #19332320;border-color:#e8e3d5;background:#f8f5ebf2;font-weight:500}
+.experience[data-lighting="day"] .world-caption i{width:1px;background:#f8f5ebd9;height:18px}

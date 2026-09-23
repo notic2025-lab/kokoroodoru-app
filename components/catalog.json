@@ -1,6 +1,6 @@
 {
   "name": "心踊る街 UI部品集",
-  "edition": 4,
+  "edition": 5,
   "count": 92,
   "reference": "https://notic2025-lab.github.io/kokoroodoru-design/?fix=dialog8",
   "notes": "デザインとローカル操作の見本。認証・GPS・カメラ・送信・永続保存は未接続。追加部品は設計提案。イベント情報は架空。",
@@ -469,7 +469,7 @@
       "id": "ar-navigation",
       "title": "気配をたどる",
       "english": "AR EXPERIENCE",
-      "description": "現実の風景を主役に、光の気配・道案内・到着後の余韻をつなぐ体験設計。",
+      "description": "昼は形、夜は光。会場の日本時間で表示を自動切替し、手動でも選べる空間体験。",
       "components": [
         {
           "number": 73,
@@ -504,37 +504,37 @@
         {
           "number": 78,
           "name": "集う場所の泉",
-          "states": "上昇する細い流れ・地面に広がる輪",
+          "states": "昼のマットな形・夜の光 / 上昇する細い流れ・地面に広がる輪",
           "keywords": "AR 泉 ゴール fountain 水"
         },
         {
           "number": 79,
           "name": "ひと息つく場所の熾火",
-          "states": "低く揺らぐ光・狭い接地面",
+          "states": "昼のマットな形・夜の光 / 低く揺らぐ光・狭い接地面",
           "keywords": "AR 火 炎 喫煙所 ember"
         },
         {
           "number": 80,
           "name": "音が広がる場所の共鳴",
-          "states": "水平の薄い波・ゆっくりと広がる",
+          "states": "昼のマットな形・夜の光 / 水平の薄い波・ゆっくりと広がる",
           "keywords": "AR ステージ 音楽 音 波紋"
         },
         {
           "number": 81,
           "name": "食の場所にほどける湯気",
-          "states": "上方向へほどける線・淡いぬくもり",
+          "states": "昼のマットな形・夜の光 / 上方向へほどける線・淡いぬくもり",
           "keywords": "AR キッチン 飲食 湯気"
         },
         {
           "number": 82,
           "name": "街への光の境界",
-          "states": "実景を透かす薄い輪郭・入口に接地",
+          "states": "昼のマットな形・夜の光 / 実景を透かす薄い輪郭・入口に接地",
           "keywords": "AR 入口 門 portal"
         },
         {
           "number": 83,
           "name": "誰かがいた場所の残り灯",
-          "states": "留まる光・密度を抑えた記憶",
+          "states": "昼のマットな形・夜の光 / 留まる光・密度を抑えた記憶",
           "keywords": "AR 記憶 蛍 パーティクル"
         },
         {
@@ -575,9 +575,9 @@
         },
         {
           "number": 90,
-          "name": "見る人に合わせる光",
-          "states": "静止・夕暮れ・読みやすさ",
-          "keywords": "AR 設定 アクセシビリティ motion"
+          "name": "昼夜と見やすさの調整",
+          "states": "日本時間で自動・昼夜の手動切替・静止",
+          "keywords": "AR 時間 自動 昼 夜 設定 アクセシビリティ"
         },
         {
           "number": 91,

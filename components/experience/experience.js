@@ -3,7 +3,8 @@
 (() => {
   const $ = s => document.querySelector(s);
   const $$ = s => [...document.querySelectorAll(s)];
-  const embedded = new URLSearchParams(location.search).get('embed') === '1';
+  const params = new URLSearchParams(location.search);
+  const embedded = params.get('embed') === '1';
   document.documentElement.classList.toggle('is-embedded', embedded);
   if (embedded) $('.field-exit').target = '_top';
   const field = $('#experience');
@@ -13,6 +14,44 @@
   let lost = false;
   let memory = false;
   let announcementTimer;
+  const lighting = window.KokoroLighting;
+  let lightingMode = ['auto','day','night'].includes(params.get('mode')) ? params.get('mode') : 'auto';
+  let testMinute = null;
+  function applyLighting() {
+    const minute = testMinute ?? lighting.minutesAt();
+    const resolved = lighting.resolve(lightingMode,minute);
+    document.documentElement.dataset.lighting=resolved;
+    field.dataset.lighting=resolved;
+    document.querySelector('meta[name="theme-color"]').content=resolved==='day'?'#eeeae1':'#14231d';
+    $$('[data-light-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.lightMode===lightingMode)));
+    const label=resolved==='day'?'昼':'夜';
+    const clock=lighting.formatTime(minute);
+    const source=testMinute===null?'日本時間':'確認用の時刻';
+    const status=lightingMode==='auto'?`自動 · ${label}の表示 / ${source} ${clock}`:`${label}に固定 / 日本時間 ${clock}`;
+    $$('[data-light-status]').forEach(el=>{if(el.textContent!==status)el.textContent=status;});
+    $('#clock-feedback').textContent=testMinute===null?'端末の時計を日本時間に換算して判定しています。':`${clock}の判定を確認中。現在時刻の自動更新は停止しています。`;
+    $('#light-principle').textContent=resolved==='day'?'昼は濃い色の面と白い縁取り。光らせず、日なたと木陰の両方で形を読み取れるように。':'夜は細い流れと、地面に広がる光。同じ目印の輪郭がほどけて、街の灯りになります。';
+    $('.field-entry .field-kicker').textContent=resolved==='day'?'この道に、街のしるし。':'この道に、街の灯り。';
+    $('.field-entry>p:not(.field-kicker)').textContent=resolved==='day'?'色のある道しるべをたどって、出かけてみませんか。':'灯りの流れる先へ、出かけてみませんか。';
+    if(embedded) parent.postMessage({type:'kokoro-lighting-state',mode:lightingMode},location.origin);
+  }
+  function chooseLighting(mode) {lightingMode=mode;testMinute=null;applyLighting();}
+  $$('[data-light-mode]').forEach(button=>button.addEventListener('click',()=>chooseLighting(button.dataset.lightMode)));
+  $('#apply-time').addEventListener('click',()=>{
+    const minute=lighting.parseTime($('#test-time').value);
+    if(minute===null){$('#clock-feedback').textContent='確認したい時刻を入力してください。';$('#test-time').focus();return;}
+    testMinute=minute;lightingMode='auto';applyLighting();
+  });
+  $('#live-time').addEventListener('click',()=>chooseLighting('auto'));
+  $('#bright-background').addEventListener('change',event=>field.classList.toggle('is-bright-background',event.target.checked));
+  // Re-check on foreground return and every 15 seconds; manual selection is kept.
+  setInterval(()=>{if(testMinute===null)applyLighting();},15000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&testMinute===null)applyLighting();});
+  window.addEventListener('focus',()=>{if(testMinute===null)applyLighting();});
+  if(embedded) window.addEventListener('message',event=>{
+    if(event.origin!==location.origin||event.source!==parent||event.data?.type!=='kokoro-lighting'||!['auto','day','night'].includes(event.data.mode))return;
+    chooseLighting(event.data.mode);
+  });
   const places = {
     water: {name:'待ち合わせの泉',element:'水',index:'01',hint:'水が湧き、輪が重なる。人が集まる場所の目印。',description:'人が集まり、また街へ向かう場所。遠くでは小さな光、近づくと水の流れが立ち上がり、足元に輪が広がります。',arrival:'画面を下ろして、\n待っている人を見つけよう。'},
     ember: {name:'喫煙所',element:'熾火',index:'02',hint:'低く揺らぐ、琥珀の光。立ち止まる場所に小さなぬくもり。',description:'喫煙所を示す、小さな熾火。地面を燃やす表現は使わず、限られた場所にだけ低い光を置きます。名称を添えて、実際の火との違いを示します。',arrival:'ひと息つける場所です。\n現地の案内を確かめて、ひと休み。'},
@@ -22,9 +61,9 @@
     memory: {name:'記憶の木立',element:'残り灯',index:'06',hint:'そこにいた誰かの気配。小さな灯りが、ゆっくり留まる。',description:'同じ場所にいた人の記憶が、小さな灯りとして留まる案。光の数を抑え、木々や人の姿が見える余白を残します。プレビューの灯りは架空です。',arrival:'同じ場所にいた、誰かの気配。\nあなたも、ひとつ灯りを。'}
   };
   const moments = [
-    '最初は景色をそのまま見せる。入る操作をきっかけに、足元から光が伸びる。',
-    '道に沿う細い光が、視線を先へ運ぶ。画面下には次の行動だけを残す。',
-    '近づいて、初めて場所の輪郭が現れる。光の動きと名前を手がかりに、場所を見つける。',
+    '景色と目印の関係を最初に見せる。昼は形のある道しるべ、夜は流れる灯りが案内を始める。',
+    '昼は縁取りのある帯、夜は先へ流れる光。道順は同じでも、背景に合う見せ方を選ぶ。',
+    '昼の形と夜の光で、同じ場所を示す。名前・輪郭・動く方向を共通にして迷わせない。',
     '光の道と距離表示を消す。案内の終わりを、実際の場所や人に出会う始まりにする。'
   ];
   function announce(text) {
@@ -99,7 +138,6 @@
     $('.reality-label').hidden=!real;
     for(const el of $$('.field-header,.field-entry,.field-guidance,.field-arrival,.tracking-message')) el.inert=real;
   });
-  $('#dusk').addEventListener('change', e=>field.classList.toggle('is-dusk',e.target.checked));
   $('#strong-labels').addEventListener('change', e=>field.classList.toggle('is-solid',e.target.checked));
   const setStill=value=>{field.classList.toggle('is-still',value);$('#reduce-motion').checked=value;};
   $('#reduce-motion').addEventListener('change', e=>setStill(e.target.checked));
@@ -107,5 +145,6 @@
   setStill(media.matches);
   // Embed uses the same public scenes. No postMessage or parent state access is required.
   if(embedded) stage=2;
+  applyLighting();
   render();
 })();

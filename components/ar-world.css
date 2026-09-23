@@ -26,3 +26,18 @@
 @keyframes path-flow{to{stroke-dashoffset:100}}
 .is-still :is(.water-ring,.water-bead,.presence-dust,.ember-thread,.ember-dust,.sound-wave,.steam-thread,.portal-thread,.memory-mote,.path-pulse),.is-still .left-memory{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){.water-ring,.water-bead,.presence-dust,.ember-thread,.ember-dust,.sound-wave,.steam-thread,.portal-thread,.memory-mote,.path-pulse{animation:none!important}}
+
+/* A paired material system: opaque mineral forms by day; emissive filaments by night. */
+[data-lighting="day"],.lighting-day{--ar-day:inline;--ar-night:none;--ar-route-day:1;--ar-route-night:0;--ar-material-surface:#f3eee0;--ar-material-ink:#294d40}
+[data-lighting="night"],.lighting-night{--ar-day:none;--ar-night:inline;--ar-route-day:0;--ar-route-night:1;--ar-material-surface:#182c23;--ar-material-ink:#e9e9cd}
+.day-form{display:var(--ar-day,none);filter:drop-shadow(0 2px 0 #183a32)}.night-form{display:var(--ar-night,inline)}
+.day-contact-shadow{fill:#17392e;opacity:.32;filter:blur(5px)}.day-contact{fill:#eae6d3;stroke:#244c41;stroke-width:3}
+.path-day-base,.path-day-edge,.path-day-core{fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:var(--ar-route-day,0)}
+.path-day-base{stroke:#193e32;stroke-width:28}.path-day-edge{stroke:#fff6df;stroke-width:21}.path-day-core{stroke:#315f4d;stroke-width:10;stroke-dasharray:30 14}
+.path-spill,.path-hairline,.path-echo,.path-pulse{display:var(--ar-night,inline)}
+.day-memory-kept{display:var(--ar-day,none);fill:#ad703a;stroke:#fff5de;stroke-width:4}
+.day-flame{animation:day-ember 5s ease-in-out infinite;transform-origin:0 0}.day-memory{animation:day-memory 7s ease-in-out infinite;animation-delay:calc(var(--i)*-.6s)}
+@keyframes day-ember{0%,100%{transform:skewX(-1deg)}50%{transform:skewX(1deg)}}
+@keyframes day-memory{0%,100%{translate:0 0}50%{translate:0 -3px}}
+.is-still .day-flame,.is-still .day-memory{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){.day-flame,.day-memory{animation:none!important}}
